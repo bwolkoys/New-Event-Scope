@@ -1,0 +1,282 @@
+.deleted-events-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.deleted-events-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.back-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background: #0056b3;
+}
+
+.deleted-events-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.deleted-events-info {
+  margin-bottom: 30px;
+}
+
+.info-card {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid #ffc107;
+}
+
+.info-card h3 {
+  margin: 0 0 10px 0;
+  color: #856404;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.info-card p {
+  margin: 0;
+  color: #856404;
+  line-height: 1.5;
+}
+
+.no-deleted-events {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.no-deleted-events p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.back-to-dashboard-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.back-to-dashboard-btn:hover {
+  background: #0056b3;
+}
+
+.deleted-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.deleted-event-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #dc3545;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.deleted-event-card:hover {
+  opacity: 1;
+}
+
+.deleted-event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.deleted-event-title {
+  margin: 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.deletion-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.deleted-badge {
+  background: #dc3545;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.time-remaining {
+  background: #ffc107;
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.deleted-event-description {
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.deleted-event-details {
+  margin-bottom: 15px;
+}
+
+.deleted-event-detail {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.deleted-event-detail strong {
+  color: #333;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 80px;
+}
+
+.deletion-meta {
+  background: #f8f9fa;
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #e9ecef;
+}
+
+.deletion-meta-item {
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.deletion-meta-item:last-child {
+  margin-bottom: 0;
+}
+
+.deletion-meta-item strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.deleted-event-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.recover-btn {
+  flex: 1;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.recover-btn:hover {
+  background: #218838;
+}
+
+.permanent-delete-btn {
+  flex: 1;
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.permanent-delete-btn:hover {
+  background: #c82333;
+}
+
+@media (max-width: 768px) {
+  .deleted-events-container {
+    padding: 15px;
+  }
+  
+  .deleted-events-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .deleted-events-header h1 {
+    font-size: 2rem;
+  }
+  
+  .deleted-events-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .deleted-event-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .deletion-info {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .deleted-event-actions {
+    flex-direction: column;
+  }
+}
