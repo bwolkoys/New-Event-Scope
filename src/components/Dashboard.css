@@ -10,7 +10,7 @@
 
 .dashboard h1 {
   margin-bottom: 40px;
-  color: #333;
+  color: #183024;
   font-size: 2.5rem;
   text-align: center;
 }
@@ -28,7 +28,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   color: white;
-  background-color: #007bff;
+  background-color: #478c66;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -36,7 +36,7 @@
 }
 
 .dashboard-button:hover {
-  background-color: #0056b3;
+  background-color: #3a7257;
   transform: translateY(-2px);
 }
 

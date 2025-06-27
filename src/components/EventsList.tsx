@@ -43,9 +43,9 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
     { id: 'product', name: 'Product' }
   ];
 
-  // Filter events based on current filter state
+  // Filter and sort events based on current filter state
   const filteredEvents = useMemo(() => {
-    return events.filter(event => {
+    const filtered = events.filter(event => {
       // Search by title
       if (filters.searchTerm && !event.title.toLowerCase().includes(filters.searchTerm.toLowerCase())) {
         return false;
@@ -81,6 +81,13 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
       }
 
       return true;
+    });
+
+    // Sort events by creation date (newest first)
+    return filtered.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      return dateB.getTime() - dateA.getTime();
     });
   }, [events, filters]);
 
