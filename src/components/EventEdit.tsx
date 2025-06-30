@@ -16,7 +16,7 @@ interface Team {
 
 interface EventEditProps {
   events: EventData[];
-  onUpdateEvent: (id: string, eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => void;
+  onUpdateEvent: (id: string, eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => Promise<void>;
 }
 
 // Mock team data - in a real app, this would come from an API
@@ -209,9 +209,9 @@ const EventEdit: React.FC<EventEditProps> = ({ events, onUpdateEvent }) => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onUpdateEvent(event.id, formData);
+    await onUpdateEvent(event.id, formData);
     navigate(`/events/${event.id}`);
   };
 

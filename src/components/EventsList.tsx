@@ -6,8 +6,8 @@ import './EventsList.css';
 
 interface EventsListProps {
   events: EventData[];
-  onUpdateEvent: (id: string, eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => void;
-  onDeleteEvent: (id: string) => void;
+  onUpdateEvent: (id: string, eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => Promise<void>;
+  onDeleteEvent: (id: string) => Promise<void>;
 }
 
 interface FilterState {
@@ -361,9 +361,9 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
                 </button>
                 <button 
                   className="action-btn delete-btn"
-                  onClick={() => {
+                  onClick={async () => {
                     if (window.confirm('Are you sure you want to delete this event? You can recover it within 24 hours.')) {
-                      onDeleteEvent(event.id);
+                      await onDeleteEvent(event.id);
                     }
                   }}
                 >

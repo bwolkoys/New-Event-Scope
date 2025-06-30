@@ -6,8 +6,8 @@ import './EventDetail.css';
 
 interface EventDetailProps {
   events: EventData[];
-  onUpdateEvent: (id: string, eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => void;
-  onDeleteEvent: (id: string) => void;
+  onUpdateEvent: (id: string, eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => Promise<void>;
+  onDeleteEvent: (id: string) => Promise<void>;
 }
 
 const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDeleteEvent }) => {
@@ -57,9 +57,9 @@ const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDele
     return teamNames[teamId] || teamId;
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this event? You can recover it within 24 hours.')) {
-      onDeleteEvent(event.id);
+      await onDeleteEvent(event.id);
       navigate('/events');
     }
   };

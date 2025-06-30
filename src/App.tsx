@@ -5,6 +5,7 @@ import EventsList from './components/EventsList';
 import DeletedEvents from './components/DeletedEvents';
 import EventDetail from './components/EventDetail';
 import EventEdit from './components/EventEdit';
+import { googleCalendarService, showGoogleCalendarMessage } from './utils/googleCalendarAPI';
 
 export interface EventData {
   id: string;
@@ -27,6 +28,7 @@ export interface EventData {
   privacy: 'team-only' | 'public';
   createdAt: string;
   deletedAt?: string;
+  googleCalendarEventId?: string;
 }
 
 const STORAGE_KEY = 'eventScopeEvents';
@@ -80,29 +82,92 @@ function App() {
     }
   }, [events]);
 
-  const addEvent = (eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => {
-    const newEvent: EventData = {
-      ...eventData,
-      id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-    };
-    setEvents(prev => [...prev, newEvent]);
+  const addEvent = async (eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => {
+    try {
+      console.log('Creating new event:', eventData);
+      
+      const newEvent: EventData = {
+        ...eventData,
+        id: Date.now().toString(),
+        createdAt: new Date().toISOString(),
+      };
+
+      // Add event locally first
+      console.log('Adding event locally...');
+      setEvents(prev => [...prev, newEvent]);
+      console.log('Event added locally successfully');
+
+      // Try to create in Google Calendar
+      try {
+        console.log('Attempting Google Calendar sync...');
+        const googleEventId = await googleCalendarService.createEvent(newEvent);
+        if (googleEventId) {
+          // Update the event with the Google Calendar ID
+          setEvents(prev => prev.map(event => 
+            event.id === newEvent.id 
+              ? { ...event, googleCalendarEventId: googleEventId }
+              : event
+          ));
+          console.log('✅ Event synced with Google Calendar successfully!');
+        } else {
+          console.log('Google Calendar sync skipped (not configured or failed)');
+        }
+      } catch (calendarError) {
+        console.error('Failed to sync new event with Google Calendar:', calendarError);
+        console.warn('⚠️ Event created locally, but failed to sync with Google Calendar.');
+      }
+    } catch (error) {
+      console.error('Failed to create event:', error);
+      // Re-throw the error so it can be handled by the form
+      throw error;
+    }
   };
 
-  const updateEvent = (id: string, eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => {
+  const updateEvent = async (id: string, eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => {
+    // Find the existing event to get Google Calendar ID
+    const existingEvent = events.find(event => event.id === id);
+    const updatedEvent = { ...existingEvent, ...eventData } as EventData;
+    
+    // Update locally first
     setEvents(prev => prev.map(event => 
       event.id === id 
-        ? { ...event, ...eventData }
+        ? updatedEvent
         : event
     ));
+
+    // Sync with Google Calendar if event has Google Calendar ID
+    if (existingEvent?.googleCalendarEventId) {
+      try {
+        const success = await googleCalendarService.updateEvent(updatedEvent, existingEvent.googleCalendarEventId);
+        showGoogleCalendarMessage('updated', success);
+      } catch (error) {
+        console.error('Failed to sync event update with Google Calendar:', error);
+        showGoogleCalendarMessage('updated', false);
+      }
+    }
   };
 
-  const deleteEvent = (id: string) => {
+  const deleteEvent = async (id: string) => {
+    // Find the existing event to get Google Calendar ID
+    const existingEvent = events.find(event => event.id === id);
+    
+    // Mark as deleted locally first
     setEvents(prev => prev.map(event => 
       event.id === id 
         ? { ...event, deletedAt: new Date().toISOString() }
         : event
     ));
+
+    // Sync with Google Calendar if event has Google Calendar ID
+    if (existingEvent?.googleCalendarEventId) {
+      try {
+        const success = await googleCalendarService.deleteEvent(existingEvent.googleCalendarEventId);
+        showGoogleCalendarMessage('deleted', success);
+      } catch (error) {
+        console.error('Failed to sync event deletion with Google Calendar:', error);
+        showGoogleCalendarMessage('deleted', false);
+      }
+    }
   };
 
   const recoverEvent = (id: string) => {

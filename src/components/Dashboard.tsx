@@ -5,7 +5,7 @@ import EventCreationForm from './EventCreationForm';
 import { EventData } from '../App';
 
 interface DashboardProps {
-  onCreateEvent: (eventData: Omit<EventData, 'id' | 'createdAt'>) => void;
+  onCreateEvent: (eventData: Omit<EventData, 'id' | 'createdAt'>) => Promise<void>;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ onCreateEvent }) => {
@@ -20,8 +20,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onCreateEvent }) => {
     setIsFormOpen(false);
   };
 
-  const handleSubmitEvent = (eventData: Omit<EventData, 'id' | 'createdAt'>) => {
-    onCreateEvent(eventData);
+  const handleSubmitEvent = async (eventData: Omit<EventData, 'id' | 'createdAt'>) => {
+    try {
+      console.log('Dashboard handling event submission:', eventData);
+      await onCreateEvent(eventData);
+      console.log('Event created successfully');
+    } catch (error) {
+      console.error('Dashboard: Error creating event:', error);
+      throw error; // Re-throw so the form can handle it
+    }
   };
 
   const handleViewEvents = () => {

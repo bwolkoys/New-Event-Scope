@@ -5,7 +5,7 @@ import { EventData } from '../App';
 interface EventCreationFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (eventData: Omit<EventData, 'id' | 'createdAt'>) => void;
+  onSubmit: (eventData: Omit<EventData, 'id' | 'createdAt'>) => Promise<void>;
 }
 
 interface TeamMember {
@@ -163,10 +163,17 @@ const EventCreationForm: React.FC<EventCreationFormProps> = ({ isOpen, onClose, 
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
-    onClose();
+    try {
+      console.log('Form submitted with data:', formData);
+      await onSubmit(formData);
+      console.log('Event creation successful, closing form');
+      onClose();
+    } catch (error) {
+      console.error('Error during form submission:', error);
+      alert('Failed to create event. Please check the console for details and try again.');
+    }
   };
 
   if (!isOpen) return null;
