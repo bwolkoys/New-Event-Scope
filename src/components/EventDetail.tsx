@@ -38,12 +38,14 @@ const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDele
     });
   };
 
-  const formatTime = (timeString: string) => {
-    return new Date(`2000-01-01T${timeString}`).toLocaleTimeString('en-US', {
+  const formatTime = (timeString: string, timezone: string) => {
+    const dateTime = new Date(`${event.startDate}T${timeString}`);
+    return new Intl.DateTimeFormat('en-US', {
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true
-    });
+      hour12: true,
+      timeZone: timezone
+    }).format(dateTime);
   };
 
   const getTeamName = (teamId: string) => {
@@ -117,10 +119,10 @@ const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDele
             <div className="detail-section">
               <h3>Date & Time</h3>
               <div className="detail-item">
-                <strong>Start:</strong> {formatDate(event.startDate)} at {formatTime(event.startTime)}
+                <strong>Start:</strong> {formatDate(event.startDate)} at {formatTime(event.startTime, event.timezone)}
               </div>
               <div className="detail-item">
-                <strong>End:</strong> {formatDate(event.endDate)} at {formatTime(event.endTime)}
+                <strong>End:</strong> {formatDate(event.endDate)} at {formatTime(event.endTime, event.timezone)}
               </div>
               <div className="detail-item">
                 <strong>Timezone:</strong> {event.timezone}

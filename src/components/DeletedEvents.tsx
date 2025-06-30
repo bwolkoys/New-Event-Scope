@@ -28,12 +28,14 @@ const DeletedEvents: React.FC<DeletedEventsProps> = ({
     });
   };
 
-  const formatTime = (timeString: string) => {
-    return new Date(`2000-01-01T${timeString}`).toLocaleTimeString('en-US', {
+  const formatTime = (timeString: string, dateString: string, timezone: string) => {
+    const dateTime = new Date(`${dateString}T${timeString}`);
+    return new Intl.DateTimeFormat('en-US', {
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true
-    });
+      hour12: true,
+      timeZone: timezone
+    }).format(dateTime);
   };
 
   const getTeamName = (teamId: string) => {
@@ -121,7 +123,7 @@ const DeletedEvents: React.FC<DeletedEventsProps> = ({
                 </div>
                 
                 <div className="deleted-event-detail">
-                  <strong>Time:</strong> {formatTime(event.startTime)} - {formatTime(event.endTime)}
+                  <strong>Time:</strong> {formatTime(event.startTime, event.startDate, event.timezone)} - {formatTime(event.endTime, event.endDate, event.timezone)}
                 </div>
                 
                 {event.location && (

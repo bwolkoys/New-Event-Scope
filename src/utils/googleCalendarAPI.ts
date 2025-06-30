@@ -154,18 +154,19 @@ class GoogleCalendarService {
 
   // Convert EventData to Google Calendar format
   private convertToGoogleCalendarEvent(event: EventData): GoogleCalendarEvent {
-    const startDateTime = new Date(`${event.startDate}T${event.startTime}`);
-    const endDateTime = new Date(`${event.endDate}T${event.endTime}`);
+    // Create datetime strings in the specified timezone format
+    const startDateTimeString = `${event.startDate}T${event.startTime}`;
+    const endDateTimeString = `${event.endDate}T${event.endTime}`;
 
     return {
       summary: event.title,
       description: event.description,
       start: {
-        dateTime: startDateTime.toISOString(),
+        dateTime: startDateTimeString,
         timeZone: event.timezone
       },
       end: {
-        dateTime: endDateTime.toISOString(),
+        dateTime: endDateTimeString,
         timeZone: event.timezone
       },
       location: event.location,

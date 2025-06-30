@@ -134,12 +134,14 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
     });
   };
 
-  const formatTime = (timeString: string) => {
-    return new Date(`2000-01-01T${timeString}`).toLocaleTimeString('en-US', {
+  const formatTime = (timeString: string, dateString: string, timezone: string) => {
+    const dateTime = new Date(`${dateString}T${timeString}`);
+    return new Intl.DateTimeFormat('en-US', {
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true
-    });
+      hour12: true,
+      timeZone: timezone
+    }).format(dateTime);
   };
 
   const getTeamName = (teamId: string) => {
@@ -289,7 +291,7 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
                 </div>
                 
                 <div className="event-detail">
-                  <strong>Time:</strong> {formatTime(event.startTime)} - {formatTime(event.endTime)}
+                  <strong>Time:</strong> {formatTime(event.startTime, event.startDate, event.timezone)} - {formatTime(event.endTime, event.endDate, event.timezone)}
                 </div>
                 
                 {event.location && (
@@ -341,12 +343,12 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
               </div>
               
               <div className="event-actions">
-                <button 
+                {/* <button 
                   className="action-btn calendar-btn"
                   onClick={() => handleAddToGoogleCalendar(event)}
                 >
                   📅 Add to Calendar
-                </button>
+                </button> */}
                 <button 
                   className="action-btn view-btn"
                   onClick={() => navigate(`/events/${event.id}`)}

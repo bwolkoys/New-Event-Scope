@@ -77,9 +77,7 @@ function App() {
 
   // Save events to localStorage whenever events change
   useEffect(() => {
-    if (events.length > 0 || localStorage.getItem(STORAGE_KEY)) {
-      saveEventsToStorage(events);
-    }
+    saveEventsToStorage(events);
   }, [events]);
 
   const addEvent = async (eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => {

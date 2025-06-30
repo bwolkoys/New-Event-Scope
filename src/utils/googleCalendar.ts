@@ -5,13 +5,15 @@ export const generateGoogleCalendarUrl = (event: EventData): string => {
   const baseUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
   
   // Format dates for Google Calendar (YYYYMMDDTHHMMSS format)
-  const formatDateTimeForGoogle = (date: string, time: string, timezone: string): string => {
-    const dateTime = new Date(`${date}T${time}`);
-    return dateTime.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const formatDateTimeForGoogle = (date: string, time: string): string => {
+    // Format as local time string for Google Calendar URL
+    // Google Calendar will interpret this based on the ctz parameter
+    const dateTimeString = `${date}T${time}`;
+    return dateTimeString.replace(/[-:]/g, '');
   };
   
-  const startDateTime = formatDateTimeForGoogle(event.startDate, event.startTime, event.timezone);
-  const endDateTime = formatDateTimeForGoogle(event.endDate, event.endTime, event.timezone);
+  const startDateTime = formatDateTimeForGoogle(event.startDate, event.startTime);
+  const endDateTime = formatDateTimeForGoogle(event.endDate, event.endTime);
   
   // Create URL parameters
   const params = new URLSearchParams({
