@@ -64,6 +64,15 @@
   background: #c82333;
 }
 
+.detail-action-btn.calendar-btn {
+  background: #4285f4;
+  color: white;
+}
+
+.detail-action-btn.calendar-btn:hover {
+  background: #3367d6;
+}
+
 .event-detail-content {
   background: white;
   border-radius: 10px;

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EventData } from '../App';
+import { generateGoogleCalendarUrl } from '../utils/googleCalendar';
 import './EventsList.css';
 
 interface EventsListProps {
@@ -150,6 +151,11 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
       Liverpool: 'Liverpool'
     };
     return teamNames[teamId] || teamId;
+  };
+
+  const handleAddToGoogleCalendar = (event: EventData) => {
+    const googleCalendarUrl = generateGoogleCalendarUrl(event);
+    window.open(googleCalendarUrl, '_blank');
   };
 
   return (
@@ -335,6 +341,12 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
               </div>
               
               <div className="event-actions">
+                <button 
+                  className="action-btn calendar-btn"
+                  onClick={() => handleAddToGoogleCalendar(event)}
+                >
+                  📅 Add to Calendar
+                </button>
                 <button 
                   className="action-btn view-btn"
                   onClick={() => navigate(`/events/${event.id}`)}

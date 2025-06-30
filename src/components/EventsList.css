@@ -380,6 +380,15 @@
   background: #c82333;
 }
 
+.calendar-btn {
+  background: #4285f4;
+  color: white;
+}
+
+.calendar-btn:hover {
+  background: #3367d6;
+}
+
 .event-footer {
   border-top: 1px solid #f0f0f0;
   padding-top: 10px;
