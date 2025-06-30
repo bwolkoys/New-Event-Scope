@@ -47,11 +47,11 @@ const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDele
 
   const getTeamName = (teamId: string) => {
     const teamNames: { [key: string]: string } = {
-      engineering: 'Engineering',
-      marketing: 'Marketing',
-      sales: 'Sales',
-      design: 'Design',
-      product: 'Product'
+      WestHamUnited: 'West Ham United',
+      Arsenal: 'Arsenal',
+      Brentford: 'Brentford',
+      Chelsea: 'Chelsea',
+      Liverpool: 'Liverpool'
     };
     return teamNames[teamId] || teamId;
   };

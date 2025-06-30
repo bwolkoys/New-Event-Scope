@@ -36,11 +36,11 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
 
   // Available teams for filtering (should match the teams from EventCreationForm)
   const availableTeams = [
-    { id: 'engineering', name: 'Engineering' },
-    { id: 'marketing', name: 'Marketing' },
-    { id: 'sales', name: 'Sales' },
-    { id: 'design', name: 'Design' },
-    { id: 'product', name: 'Product' }
+    { id: 'West Ham United', name: 'West Ham United' },
+    { id: 'Arsenal', name: 'Arsenal' },
+    { id: 'Brentford', name: 'Brentford' },
+    { id: 'Chelsea', name: 'Chelsea' },
+    { id: 'Liverpool', name: 'Liverpool' }
   ];
 
   // Filter and sort events based on current filter state
@@ -143,11 +143,11 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
 
   const getTeamName = (teamId: string) => {
     const teamNames: { [key: string]: string } = {
-      engineering: 'Engineering',
-      marketing: 'Marketing',
-      sales: 'Sales',
-      design: 'Design',
-      product: 'Product'
+      WestHamUnited: 'West Ham United',
+      Arsenal: 'Arsenal',
+      Brentford: 'Brentford',
+      Chelsea: 'Chelsea',
+      Liverpool: 'Liverpool'
     };
     return teamNames[teamId] || teamId;
   };

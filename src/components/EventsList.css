@@ -192,7 +192,7 @@
 }
 
 .create-event-button {
-  background: #28a745;
+  background: #478c66;
   color: white;
   border: none;
   padding: 12px 30px;
@@ -204,7 +204,7 @@
 }
 
 .create-event-button:hover {
-  background: #218838;
+  background: #3a7257;
 }
 
 .events-grid {
@@ -354,21 +354,21 @@
 }
 
 .view-btn {
-  background: #007bff;
+  background: #5DADE2;
   color: white;
 }
 
 .view-btn:hover {
-  background: #0056b3;
+  background: #1876da;
 }
 
 .edit-btn {
-  background: #28a745;
+  background: #478c66;
   color: white;
 }
 
 .edit-btn:hover {
-  background: #218838;
+  background: #3a7257;
 }
 
 .delete-btn {
