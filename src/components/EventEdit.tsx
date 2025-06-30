@@ -22,8 +22,8 @@ interface EventEditProps {
 // Mock team data - in a real app, this would come from an API
 const MOCK_TEAMS: Team[] = [
   {
-    id: 'engineering',
-    name: 'Engineering',
+    id: 'West Ham United',
+    name: 'West Ham United',
     members: [
       { email: 'john.doe@company.com', name: 'John Doe' },
       { email: 'jane.smith@company.com', name: 'Jane Smith' },
@@ -32,8 +32,8 @@ const MOCK_TEAMS: Team[] = [
     ]
   },
   {
-    id: 'marketing',
-    name: 'Marketing',
+    id: 'Arsenal',
+    name: 'Arsenal',
     members: [
       { email: 'mike.brown@company.com', name: 'Mike Brown' },
       { email: 'lisa.davis@company.com', name: 'Lisa Davis' },
@@ -41,8 +41,8 @@ const MOCK_TEAMS: Team[] = [
     ]
   },
   {
-    id: 'sales',
-    name: 'Sales',
+    id: 'Brentford',
+    name: 'Brentford',
     members: [
       { email: 'emma.miller@company.com', name: 'Emma Miller' },
       { email: 'david.martinez@company.com', name: 'David Martinez' },
@@ -51,16 +51,16 @@ const MOCK_TEAMS: Team[] = [
     ]
   },
   {
-    id: 'design',
-    name: 'Design',
+    id: 'Chelsea',
+    name: 'Chelsea',
     members: [
       { email: 'maya.patel@company.com', name: 'Maya Patel' },
       { email: 'chris.lee@company.com', name: 'Chris Lee' }
     ]
   },
   {
-    id: 'product',
-    name: 'Product',
+    id: 'Liverpool',
+    name: 'Liverpool',
     members: [
       { email: 'anna.clark@company.com', name: 'Anna Clark' },
       { email: 'james.white@company.com', name: 'James White' },
