@@ -22,8 +22,6 @@ export interface EventData {
   rsvpRequired: boolean;
   notifications: {
     email: boolean;
-    push: boolean;
-    sms: boolean;
   };
   privacy: 'team-only' | 'public';
   createdAt: string;

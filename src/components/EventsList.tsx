@@ -334,12 +334,6 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
                 {event.notifications.email && (
                   <span className="setting-badge">Email Notifications</span>
                 )}
-                {event.notifications.push && (
-                  <span className="setting-badge">Push Notifications</span>
-                )}
-                {event.notifications.sms && (
-                  <span className="setting-badge">SMS Notifications</span>
-                )}
               </div>
               
               <div className="event-actions">

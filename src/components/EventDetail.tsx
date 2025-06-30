@@ -159,12 +159,6 @@ const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDele
                 <div className={`notification-item ${event.notifications.email ? 'enabled' : 'disabled'}`}>
                   <span>📧</span> Email Notifications
                 </div>
-                <div className={`notification-item ${event.notifications.push ? 'enabled' : 'disabled'}`}>
-                  <span>📱</span> Push Notifications
-                </div>
-                <div className={`notification-item ${event.notifications.sms ? 'enabled' : 'disabled'}`}>
-                  <span>💬</span> SMS Notifications
-                </div>
               </div>
             </div>
           </div>

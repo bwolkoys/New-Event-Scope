@@ -154,9 +154,9 @@ class GoogleCalendarService {
 
   // Convert EventData to Google Calendar format
   private convertToGoogleCalendarEvent(event: EventData): GoogleCalendarEvent {
-    // Create datetime strings in the specified timezone format
-    const startDateTimeString = `${event.startDate}T${event.startTime}`;
-    const endDateTimeString = `${event.endDate}T${event.endTime}`;
+    // Create datetime strings in RFC3339 format for Google Calendar API
+    const startDateTimeString = `${event.startDate}T${event.startTime}:00`;
+    const endDateTimeString = `${event.endDate}T${event.endTime}:00`;
 
     return {
       summary: event.title,

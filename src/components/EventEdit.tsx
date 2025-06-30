@@ -89,8 +89,6 @@ const EventEdit: React.FC<EventEditProps> = ({ events, onUpdateEvent }) => {
     rsvpRequired: false,
     notifications: {
       email: true,
-      push: false,
-      sms: false,
     },
     privacy: 'team-only',
   });
@@ -414,24 +412,6 @@ const EventEdit: React.FC<EventEditProps> = ({ events, onUpdateEvent }) => {
                     onChange={handleInputChange}
                   />
                   Email notifications
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="notifications.push"
-                    checked={formData.notifications.push}
-                    onChange={handleInputChange}
-                  />
-                  Push notifications
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="notifications.sms"
-                    checked={formData.notifications.sms}
-                    onChange={handleInputChange}
-                  />
-                  SMS notifications
                 </label>
               </div>
             </div>
