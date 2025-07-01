@@ -82,6 +82,12 @@
   transition: var(--transition-standard);
   -webkit-appearance: none; /* Remove iOS styling */
 }
+
+/* Allow checkboxes to retain native appearance */
+input[type="checkbox"] {
+  -webkit-appearance: checkbox !important;
+  appearance: checkbox !important;
+}
 .form-input:focus {
   outline: none;
   border-color: var(--color-primary);

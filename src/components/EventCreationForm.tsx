@@ -399,10 +399,9 @@ const EventCreationForm: React.FC<EventCreationFormProps> = ({ isOpen, onClose, 
                   id="rsvpRequired"
                   name="rsvpRequired"
                   checked={formData.rsvpRequired}
-                  readOnly
-                  style={{ pointerEvents: 'none' }}
+                  onChange={() => {}} // Controlled by wrapper click
                 />
-                <span>Require RSVP {formData.rsvpRequired ? '✓' : ''}</span>
+                <span>Require RSVP</span>
               </div>
             </div>
             
@@ -438,10 +437,9 @@ const EventCreationForm: React.FC<EventCreationFormProps> = ({ isOpen, onClose, 
                     id="emailNotifications"
                     name="notifications.email"
                     checked={formData.notifications.email}
-                    readOnly
-                    style={{ pointerEvents: 'none' }}
+                    onChange={() => {}} // Controlled by wrapper click
                   />
-                  <span>Email notifications {formData.notifications.email ? '✓' : ''}</span>
+                  <span>Email notifications</span>
                 </div>
               </div>
             </div>
