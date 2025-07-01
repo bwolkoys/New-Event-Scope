@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { EventData } from '../App';
-import { generateGoogleCalendarUrl } from '../utils/googleCalendar';
 import './EventDetail.css';
 
 interface EventDetailProps {
@@ -66,10 +65,6 @@ const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDele
     }
   };
 
-  const handleAddToGoogleCalendar = () => {
-    const googleCalendarUrl = generateGoogleCalendarUrl(event);
-    window.open(googleCalendarUrl, '_blank');
-  };
 
   return (
     <div className="event-detail-container">
@@ -78,12 +73,6 @@ const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDele
           ← Back to Events
         </button>
         <div className="header-actions">
-          <button 
-            onClick={handleAddToGoogleCalendar}
-            className="detail-action-btn calendar-btn"
-          >
-            📅 Add to Google Calendar
-          </button>
           <button 
             onClick={() => navigate(`/events/${event.id}/edit`)}
             className="detail-action-btn edit-btn"
