@@ -28,15 +28,15 @@
   font-size: 1.2rem;
   font-weight: 600;
   color: white;
-  background-color: #478c66;
+  background-color: var(--color-primary);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: var(--transition-standard), transform 0.2s ease;
 }
 
 .dashboard-button:hover {
-  background-color: #3a7257;
+  background-color: var(--color-primary-hover);
   transform: translateY(-2px);
 }
 

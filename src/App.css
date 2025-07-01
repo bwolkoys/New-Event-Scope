@@ -1,0 +1,594 @@
+/* === Team Management Platform Base Styles === */
+
+:root {
+  --color-primary: #478c66;        /* Your custom brand color */
+  --color-primary-hover: #3a7257;  /* Darker shade for hover */
+  --color-success: #10b981;
+  --color-brand-teal: #5DADE2;     /* Brand teal */
+  --color-brand-gold: #F4D03F;     /* Brand gold */
+  --color-brand-kelly: #58A55C;    /* Brand kelly green */
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --border-radius: 8px;
+  --transition-standard: all 0.2s ease;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+  
+  .mobile-padding {
+    padding: 12px !important;
+  }
+}
+
+/* Ensure proper scrolling on mobile */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+/* Fix for iOS safari viewport issues */
+.full-height {
+  height: 100vh;
+  height: -webkit-fill-available;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-standard);
+  touch-action: manipulation; /* Improve tap response on mobile */
+}
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-standard);
+  touch-action: manipulation;
+}
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+/* Inputs */
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: var(--border-radius);
+  font-size: 16px; /* Prevent zoom on iOS */
+  transition: var(--transition-standard);
+  -webkit-appearance: none; /* Remove iOS styling */
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(71, 140, 102, 0.2);
+}
+
+/* Status badge */
+.invitation-status {
+  padding: 4px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Tag */
+.email-tag {
+  background: #f0fff4;
+  color: var(--color-primary);
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Message styles */
+.message-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Improve touch targets for mobile */
+@media (max-width: 768px) {
+  button, .clickable {
+    min-height: 44px; /* iOS recommended touch target size */
+    min-width: 44px;
+  }
+  
+  /* Make text more readable on mobile */
+  .message-content {
+    line-height: 1.6;
+  }
+  
+  /* Adjust input padding for mobile */
+  .form-input {
+    padding: 16px;
+  }
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Smooth animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Brand color utilities */
+.bg-brand-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-brand-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.text-brand-primary {
+  color: var(--color-primary);
+}
+
+.border-brand-primary {
+  border-color: var(--color-primary);
+}
+
+/* === EMOJI AND REACTION IMPROVEMENTS === */
+
+/* Message reactions styling - FIXED LAYOUT */
+.reaction-button {
+  transition: var(--transition-standard);
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px; /* Consistent height */
+}
+
+.reaction-button:hover {
+  background: #e5e7eb;
+  border-color: var(--color-primary);
+}
+
+.reaction-button.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+/* Mobile responsiveness for emoji reactions */
+@media (max-width: 768px) {
+  .message-reactions-container {
+    margin-left: 36px; /* Adjust for smaller avatar */
+  }
+  
+  .reaction-button {
+    min-height: 32px; /* Larger touch targets on mobile */
+    padding: 6px 10px;
+  }
+  
+  .emoji-button {
+    min-width: 36px;
+    min-height: 36px;
+  }
+  
+  /* Mobile emoji grid */
+  .emoji-grid {
+    grid-template-columns: repeat(6, 1fr); /* Fewer columns on mobile */
+    gap: 6px;
+  }
+  
+  .emoji-grid .emoji-button {
+    padding: 10px;
+    font-size: 20px;
+  }
+}
+
+/* === END EMOJI FIXES === */
+
+/* Success states */
+.success {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2) !important;
+}
+
+.animate-fade-in {
+  animation: fadeInSlide 0.2s ease-out;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search highlight styling */
+mark {
+  background-color: #fef08a;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+/* Improve search input focus */
+.search-input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Better search bar styling */
+.search-bar {
+  background: linear-gradient(135deg, #fef3c7, #fef08a);
+  border-color: #f59e0b;
+}
+
+/* Keyboard shortcut styling */
+kbd {
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Search result counter styling */
+.search-results {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Responsive search bar */
+@media (max-width: 640px) {
+  .search-bar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .search-bar input {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Link Preview Styles */
+.link-preview {
+  transition: all 0.2s ease;
+  border-left: 3px solid #3b82f6;
+}
+
+.link-preview:hover {
+  border-left-color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Link styling improvements */
+.message-content a {
+  color: #2563eb;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+  word-break: break-all;
+}
+
+.message-content a:hover {
+  color: #1d4ed8;
+  background-color: rgba(37, 99, 235, 0.1);
+  padding: 1px 2px;
+  border-radius: 3px;
+}
+
+/* Text truncation utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Loading shimmer animation for link previews */
+.link-preview-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Platform badges */
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* Improve code block styling in messages */
+.message-content pre {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.message-content code {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875em;
+}
+
+/* Enhance mention styling */
+.message-content .mention {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.message-content .mention.current-user {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fcd34d;
+}
+
+/* Responsive link previews */
+@media (max-width: 640px) {
+  .link-preview {
+    margin: 8px -12px;
+    border-radius: 0;
+    border-left-width: 4px;
+  }
+  
+  .link-preview .preview-image {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .link-preview .preview-content {
+    font-size: 14px;
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Fix iOS viewport issues */
+  .full-height {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+
+  /* Safe area support for newer phones */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Prevent zoom on input focus (iOS) */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+
+  /* Improve touch targets */
+  button, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better scrolling on mobile */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+
+  /* Hide desktop-only elements */
+  .mobile-hidden {
+    display: none !important;
+  }
+
+  /* Mobile-optimized spacing */
+  .mobile-padding {
+    padding: 12px !important;
+  }
+
+  .mobile-full-width {
+    width: 100% !important;
+  }
+
+  /* Adjust message content for mobile */
+  .message-content {
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  /* Mobile link previews */
+  .link-preview-mobile {
+    margin: 8px 0;
+  }
+
+  /* Mobile input improvements */
+  .mobile-input {
+    border-radius: 20px;
+    padding: 12px 16px;
+    min-height: 48px;
+  }
+
+  /* Mobile button improvements */
+  .mobile-button {
+    border-radius: 20px;
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px;
+  }
+}
+
+/* === Message Layout Improvements === */
+
+/* Ensure consistent message spacing and alignment */
+.message-container {
+  padding: 12px 0; /* Consistent vertical padding */
+  border-bottom: 1px solid #f3f4f6; /* Subtle separator line */
+  margin: 0; /* Remove any default margins */
+}
+
+.message-container:last-child {
+  border-bottom: none; /* Remove border from last message */
+}
+
+/* Message content alignment */
+.message-content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px; /* Consistent gap between avatar and content */
+  padding: 0 24px; /* Consistent horizontal padding */
+}
+
+/* Avatar alignment */
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px; /* Slight offset to align with first line of text */
+}
+
+/* Message text container */
+.message-text-container {
+  flex: 1;
+  min-width: 0; /* Allows text to wrap properly */
+}
+
+/* Message header (username, badges, time) */
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+/* Message body text */
+.message-body {
+  line-height: 1.5;
+  color: #374151;
+  margin: 0;
+}
+
+/* System messages alignment */
+.system-message-container {
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hover effects for messages */
+.message-container:hover {
+  background-color: #f9fafb;
+}
+
+.message-container:hover .message-actions {
+  opacity: 1;
+}
+
+.message-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+/* Mobile responsiveness for messages */
+@media (max-width: 768px) {
+  .message-content-wrapper {
+    padding: 0 16px; /* Reduced padding on mobile */
+    gap: 8px; /* Smaller gap on mobile */
+  }
+  
+  .message-avatar {
+    width: 28px;
+    height: 28px;
+  }
+}

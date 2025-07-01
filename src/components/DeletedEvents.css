@@ -20,11 +20,11 @@
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  transition: background-color 0.2s;
+  transition: var(--transition-standard);
 }
 
 .back-button:hover {
@@ -45,7 +45,7 @@
 .info-card {
   background: #fff3cd;
   border: 1px solid #ffeaa7;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   padding: 20px;
   border-left: 4px solid #ffc107;
 }
@@ -82,11 +82,11 @@
   color: white;
   border: none;
   padding: 12px 30px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  transition: background-color 0.2s;
+  transition: var(--transition-standard);
 }
 
 .back-to-dashboard-btn:hover {
@@ -101,12 +101,12 @@
 
 .deleted-event-card {
   background: white;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-left: 4px solid #dc3545;
   opacity: 0.9;
-  transition: opacity 0.2s;
+  transition: var(--transition-standard);
 }
 
 .deleted-event-card:hover {
@@ -213,15 +213,15 @@
 
 .recover-btn {
   flex: 1;
-  background: #28a745;
+  background: var(--color-success);
   color: white;
   border: none;
   padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: background-color 0.2s;
+  transition: var(--transition-standard);
 }
 
 .recover-btn:hover {
@@ -234,11 +234,11 @@
   color: white;
   border: none;
   padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: background-color 0.2s;
+  transition: var(--transition-standard);
 }
 
 .permanent-delete-btn:hover {

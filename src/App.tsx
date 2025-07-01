@@ -81,12 +81,19 @@ function App() {
   const addEvent = async (eventData: Omit<EventData, 'id' | 'createdAt' | 'deletedAt'>) => {
     try {
       console.log('Creating new event:', eventData);
+      console.log('Event startDate:', eventData.startDate);
+      console.log('Event endDate:', eventData.endDate);
       
       const newEvent: EventData = {
         ...eventData,
         id: Date.now().toString(),
         createdAt: new Date().toISOString(),
       };
+      
+      console.log('New event created:', newEvent);
+      console.log('New event startDate:', newEvent.startDate);
+      console.log('New event endDate:', newEvent.endDate);
+      console.log('New event createdAt:', newEvent.createdAt);
 
       // Add event locally first
       console.log('Adding event locally...');

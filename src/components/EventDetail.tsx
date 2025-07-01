@@ -117,7 +117,7 @@ const EventDetail: React.FC<EventDetailProps> = ({ events, onUpdateEvent, onDele
 
           <div className="event-details-grid">
             <div className="detail-section">
-              <h3>Date & Time</h3>
+              <h3>Event Date & Time</h3>
               <div className="detail-item">
                 <strong>Start:</strong> {formatDate(event.startDate)} at {formatTime(event.startTime, event.timezone)}
               </div>

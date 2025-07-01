@@ -39,11 +39,11 @@
 .detail-action-btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: var(--transition-standard);
 }
 
 .detail-action-btn.edit-btn {
@@ -75,7 +75,7 @@
 
 .event-detail-content {
   background: white;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -150,8 +150,8 @@
 .detail-section {
   background: #f8f9fa;
   padding: 20px;
-  border-radius: 8px;
-  border-left: 4px solid #007bff;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--color-primary);
 }
 
 .detail-section h3 {
@@ -228,7 +228,7 @@
   gap: 12px;
   padding: 12px;
   background: #f8f9fa;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   border: 1px solid #e9ecef;
 }
 
@@ -253,7 +253,7 @@
 .event-meta {
   background: #f8f9fa;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   border: 1px solid #e9ecef;
 }
 

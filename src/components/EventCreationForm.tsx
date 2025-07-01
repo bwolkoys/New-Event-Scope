@@ -108,8 +108,12 @@ const EventCreationForm: React.FC<EventCreationFormProps> = ({ isOpen, onClose, 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     
+    console.log('Input change:', { name, value, type });
+    
     if (type === 'checkbox') {
       const checkbox = e.target as HTMLInputElement;
+      console.log('Checkbox change:', { name, checked: checkbox.checked });
+      
       if (name.startsWith('notifications.')) {
         const notificationKey = name.split('.')[1] as keyof typeof formData.notifications;
         setFormData(prev => ({
@@ -129,6 +133,26 @@ const EventCreationForm: React.FC<EventCreationFormProps> = ({ isOpen, onClose, 
       setFormData(prev => ({
         ...prev,
         [name]: value,
+      }));
+    }
+  };
+
+  const handleCheckboxChange = (fieldName: string, isNestedField: boolean = false) => {
+    console.log('Manual checkbox toggle:', fieldName);
+    
+    if (isNestedField && fieldName.startsWith('notifications.')) {
+      const notificationKey = fieldName.split('.')[1] as keyof typeof formData.notifications;
+      setFormData(prev => ({
+        ...prev,
+        notifications: {
+          ...prev.notifications,
+          [notificationKey]: !prev.notifications[notificationKey],
+        },
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [fieldName]: !prev[fieldName as keyof typeof prev],
       }));
     }
   };
@@ -349,29 +373,76 @@ const EventCreationForm: React.FC<EventCreationFormProps> = ({ isOpen, onClose, 
           <div className="form-section">
             <h3>Settings</h3>
             <div className="form-group checkbox-group">
-              <label>
+              <div 
+                className="checkbox-wrapper"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  console.log('RSVP mousedown');
+                  setFormData(prev => ({
+                    ...prev,
+                    rsvpRequired: !prev.rsvpRequired
+                  }));
+                }}
+                style={{ 
+                  cursor: 'pointer', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px',
+                  padding: '8px',
+                  border: '2px solid transparent',
+                  borderRadius: '4px',
+                  backgroundColor: formData.rsvpRequired ? '#e0f2fe' : 'transparent'
+                }}
+              >
                 <input
                   type="checkbox"
+                  id="rsvpRequired"
                   name="rsvpRequired"
                   checked={formData.rsvpRequired}
-                  onChange={handleInputChange}
+                  readOnly
+                  style={{ pointerEvents: 'none' }}
                 />
-                Require RSVP
-              </label>
+                <span>Require RSVP {formData.rsvpRequired ? '✓' : ''}</span>
+              </div>
             </div>
             
             <div className="form-group">
               <label>Notification Preferences</label>
               <div className="checkbox-group">
-                <label>
+                <div 
+                  className="checkbox-wrapper"
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    console.log('Email notifications mousedown');
+                    setFormData(prev => ({
+                      ...prev,
+                      notifications: {
+                        ...prev.notifications,
+                        email: !prev.notifications.email
+                      }
+                    }));
+                  }}
+                  style={{ 
+                    cursor: 'pointer', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '8px',
+                    padding: '8px',
+                    border: '2px solid transparent',
+                    borderRadius: '4px',
+                    backgroundColor: formData.notifications.email ? '#e0f2fe' : 'transparent'
+                  }}
+                >
                   <input
                     type="checkbox"
+                    id="emailNotifications"
                     name="notifications.email"
                     checked={formData.notifications.email}
-                    onChange={handleInputChange}
+                    readOnly
+                    style={{ pointerEvents: 'none' }}
                   />
-                  Email notifications
-                </label>
+                  <span>Email notifications {formData.notifications.email ? '✓' : ''}</span>
+                </div>
               </div>
             </div>
             

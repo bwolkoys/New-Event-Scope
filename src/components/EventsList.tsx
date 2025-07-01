@@ -127,6 +127,7 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
   };
 
   const formatDate = (dateString: string) => {
+    console.log('Formatting date:', dateString);
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -286,7 +287,7 @@ const EventsList: React.FC<EventsListProps> = ({ events, onUpdateEvent, onDelete
               
               <div className="event-details">
                 <div className="event-detail">
-                  <strong>Date:</strong> {formatDate(event.startDate)}
+                  <strong>Event Date:</strong> {formatDate(event.startDate)}
                   {event.startDate !== event.endDate && ` - ${formatDate(event.endDate)}`}
                 </div>
                 
