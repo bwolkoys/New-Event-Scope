@@ -6,6 +6,7 @@ import DeletedEvents from './components/DeletedEvents';
 import EventDetail from './components/EventDetail';
 import EventEdit from './components/EventEdit';
 import { googleCalendarService, showGoogleCalendarMessage } from './utils/googleCalendarAPI';
+import { emailService } from './services/emailService';
 
 export interface EventData {
   id: string;
@@ -118,6 +119,35 @@ function App() {
       } catch (calendarError) {
         console.error('Failed to sync new event with Google Calendar:', calendarError);
         console.warn('⚠️ Event created locally, but failed to sync with Google Calendar.');
+      }
+
+      // Send email notifications if enabled and guests exist
+      if (newEvent.notifications.email && newEvent.guests.length > 0) {
+        try {
+          console.log('Sending email invitations to guests...');
+          const emailResult = await emailService.sendEventInvitation(
+            {
+              title: newEvent.title,
+              description: newEvent.description,
+              startDate: newEvent.startDate,
+              endDate: newEvent.endDate,
+              startTime: newEvent.startTime,
+              endTime: newEvent.endTime,
+              location: newEvent.location,
+            },
+            newEvent.guests,
+            'Event Organizer' // You can customize this or get it from user context
+          );
+
+          if (emailResult.success) {
+            console.log('✅ Email invitations sent successfully!');
+          } else {
+            console.warn('⚠️ Failed to send email invitations:', emailResult.error);
+          }
+        } catch (emailError) {
+          console.error('Failed to send email invitations:', emailError);
+          console.warn('⚠️ Event created successfully, but email invitations failed to send.');
+        }
       }
     } catch (error) {
       console.error('Failed to create event:', error);
